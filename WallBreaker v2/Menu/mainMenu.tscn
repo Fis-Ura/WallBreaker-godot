@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjgwtq4gmqurt"]
+
+[ext_resource type="Script" path="res://Menu/mainMenu.gd" id="1_xsd87"]
+[ext_resource type="Texture2D" uid="uid://dpbv4klbpl3ng" path="res://Menu/assets/background.png" id="3_s0h6f"]
+[ext_resource type="Texture2D" uid="uid://dgjxvi56465xg" path="res://Menu/assets/titleCard.png" id="4_0ovu4"]
+[ext_resource type="PackedScene" uid="uid://bb0536spb0hv2" path="res://Menu/menu_underline.tscn" id="7_ms24e"]
+
+[node name="mainMenuUI" type="CanvasLayer"]
+script = ExtResource("1_xsd87")
+
+[node name="mainMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Graphics" type="Control" parent="mainMenu"]
+texture_filter = 1
+anchors_preset = 0
+offset_right = 481.0
+offset_bottom = 271.0
+scale = Vector2(2, 2)
+
+[node name="background" type="TextureRect" parent="mainMenu/Graphics"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_s0h6f")
+
+[node name="titleCard" type="TextureRect" parent="mainMenu/Graphics"]
+layout_mode = 0
+offset_left = 0.5
+offset_top = 39.5
+offset_right = 480.5
+offset_bottom = 161.5
+texture = ExtResource("4_0ovu4")
+
+[node name="buttonList" type="VBoxContainer" parent="mainMenu"]
+z_index = -5
+layout_mode = 0
+offset_left = 387.0
+offset_top = 302.0
+offset_right = 576.0
+offset_bottom = 473.0
+theme_override_constants/separation = 7
+
+[node name="gameStart" type="Button" parent="mainMenu/buttonList"]
+layout_mode = 2
+text = "Game Start"
+
+[node name="ranking" type="Button" parent="mainMenu/buttonList"]
+layout_mode = 2
+text = "Ranking"
+
+[node name="manual" type="Button" parent="mainMenu/buttonList"]
+layout_mode = 2
+text = "Manual"
+
+[node name="return" type="Button" parent="mainMenu/buttonList"]
+layout_mode = 2
+text = "Return"
+
+[node name="menuUnderline" parent="mainMenu" instance=ExtResource("7_ms24e")]
+z_index = 5
+layout_mode = 0
+menu_parent_path = NodePath("../buttonList")
+
+[connection signal="focus_entered" from="mainMenu/buttonList/gameStart" to="." method="_on_game_start_focus_entered"]
+[connection signal="pressed" from="mainMenu/buttonList/gameStart" to="." method="_on_game_start_pressed"]
+[connection signal="pressed" from="mainMenu/buttonList/ranking" to="." method="_on_ranking_pressed"]
+[connection signal="pressed" from="mainMenu/buttonList/manual" to="." method="_on_manual_pressed"]
+[connection signal="pressed" from="mainMenu/buttonList/return" to="." method="_on_return_pressed"]

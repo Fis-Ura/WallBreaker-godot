@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bb0536spb0hv2"]
+
+[ext_resource type="Script" path="res://Menu/menu_underline.gd" id="2_42e6h"]
+[ext_resource type="Texture2D" uid="uid://djsgg3mvjunse" path="res://Menu/assets/underlineDark.png" id="2_q16bm"]
+
+[node name="TextureRect" type="TextureRect"]
+texture_filter = 1
+offset_right = 177.0
+offset_bottom = 24.0
+scale = Vector2(2, 2)
+texture = ExtResource("2_q16bm")
+expand_mode = 3
+stretch_mode = 2
+script = ExtResource("2_42e6h")

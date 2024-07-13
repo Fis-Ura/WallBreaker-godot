@@ -1,0 +1,123 @@
+[gd_scene load_steps=11 format=3 uid="uid://cjgwtq4gmqurt"]
+
+[ext_resource type="Script" path="res://Menu/mainMenu.gd" id="1_xsd87"]
+[ext_resource type="Script" path="res://Menu/TitleGraphicAnim.gd" id="2_bb5ls"]
+[ext_resource type="Texture2D" uid="uid://b2yo7i8ntjmfe" path="res://Menu/assets/title.png" id="2_qjibs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vxtg"]
+atlas = ExtResource("2_qjibs")
+region = Rect2(64, 432, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lh2ds"]
+atlas = ExtResource("2_qjibs")
+region = Rect2(88, 432, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrnsg"]
+atlas = ExtResource("2_qjibs")
+region = Rect2(112, 432, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnf6r"]
+atlas = ExtResource("2_qjibs")
+region = Rect2(136, 432, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37jsn"]
+atlas = ExtResource("2_qjibs")
+region = Rect2(160, 432, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjcns"]
+atlas = ExtResource("2_qjibs")
+region = Rect2(184, 432, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e3vfk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vxtg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lh2ds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrnsg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnf6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37jsn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjcns")
+}],
+"loop": true,
+"name": &"Fly",
+"speed": 5.0
+}]
+
+[node name="mainMenuUI" type="CanvasLayer"]
+script = ExtResource("1_xsd87")
+
+[node name="mainMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="buttonList" type="VBoxContainer" parent="mainMenu"]
+z_index = 5
+layout_mode = 0
+offset_left = 392.0
+offset_top = 320.0
+offset_right = 576.0
+offset_bottom = 464.0
+
+[node name="gameStart" type="Button" parent="mainMenu/buttonList"]
+layout_mode = 2
+text = "Game Start"
+
+[node name="ranking" type="Button" parent="mainMenu/buttonList"]
+layout_mode = 2
+text = "Ranking"
+
+[node name="manual" type="Button" parent="mainMenu/buttonList"]
+layout_mode = 2
+text = "Manual"
+
+[node name="return" type="Button" parent="mainMenu/buttonList"]
+layout_mode = 2
+text = "Return"
+
+[node name="graphics" type="CanvasLayer" parent="mainMenu"]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+
+[node name="Node2D" type="Node2D" parent="mainMenu/graphics"]
+z_index = -5
+texture_filter = 1
+script = ExtResource("2_bb5ls")
+
+[node name="background" type="Sprite2D" parent="mainMenu/graphics/Node2D"]
+texture = ExtResource("2_qjibs")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 480, 272)
+
+[node name="titleCard" type="Sprite2D" parent="mainMenu/graphics/Node2D"]
+position = Vector2(240, 100)
+texture = ExtResource("2_qjibs")
+region_enabled = true
+region_rect = Rect2(0, 272, 480, 120)
+
+[node name="underline" type="Sprite2D" parent="mainMenu/graphics/Node2D"]
+position = Vector2(235.5, 163.5)
+texture = ExtResource("2_qjibs")
+region_enabled = true
+region_rect = Rect2(72, 399, 179, 26)
+
+[node name="birdAnim" type="AnimatedSprite2D" parent="mainMenu/graphics/Node2D/underline"]
+position = Vector2(-69.5, 1)
+sprite_frames = SubResource("SpriteFrames_e3vfk")
+animation = &"Fly"
+
+[connection signal="pressed" from="mainMenu/buttonList/gameStart" to="." method="_on_game_start_pressed"]
+[connection signal="pressed" from="mainMenu/buttonList/ranking" to="." method="_on_ranking_pressed"]
+[connection signal="pressed" from="mainMenu/buttonList/manual" to="." method="_on_manual_pressed"]
+[connection signal="pressed" from="mainMenu/buttonList/return" to="." method="_on_return_pressed"]
